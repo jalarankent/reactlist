@@ -1,0 +1,270 @@
+
+
+
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+   background-color: antiquewhite;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.App {
+  text-align: center;
+}
+
+h1 {
+  color: #181616;
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  color: #3498db;
+}
+
+.profile-pic {
+  margin-right: 10px;
+}
+
+.logout-button {
+  margin-left: 35px;
+}
+
+/* App.css */
+
+.login-button {
+    margin-top: 20px;
+  }
+  
+  .login-button button {
+    background-color: #7c2acd; /* Green background */
+    color: rgb(22, 10, 10); /* White text color */
+    padding: 10px 15px; /* Padding inside the button */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Optional: Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+  }
+  
+  
+.login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .login-button button {
+    background-color: #4caf50; /* Green background color */
+    border: none;
+    color: rgb(24, 15, 15);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  /* Add a hover effect */
+  .login-button button:hover {
+    background-color: #5b8f5f;
+  }
+  
+  /* Style the second button with a different color */
+  .login-button button + button {
+    margin-left: 10px;
+    background-color: #0a0d0f; /* Blue background color */
+  }
+  
+  /* Add hover effect for the second button */
+  .login-button button + button:hover {
+    background-color: #75a6ce;
+  }
+  
+  
+
+  .app-introduction-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px; /* Adjust as needed */
+  }
+  
+  .app-introduction {
+    background-image: url(https://tse1.mm.bing.net/th?id=OIP.XRqJ54UPzJmEJxLuRM9oQgHaEK&pid=Api&P=0&h=180);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(16, 14, 15, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .app-introduction h2 {
+    color: #191f19; 
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  
+  .app-introduction p {
+    color: #310b0b;
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  }
+  
+
+/* Styles for buttons */
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: 2px solid #4CAF50;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+  border-color: #45a049;
+}
+
+/* Styles for the task list */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Styles for individual tasks */
+li {
+  margin-bottom: 15px;
+  padding: 12px;
+  background-color: #ffffff;
+  border: 2px solid #ddd; /* Perfect border */
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+li:hover {
+  border-color: #3498db;
+}
+
+/* Additional styles for links inside tasks */
+li a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+li a:hover {
+  text-decoration: underline;
+}
+
+
+input[type="text"],
+input[type="date"],
+select {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  outline: none;
+  background: none;
+  border: 1px solid #0b0617;
+  padding: 0.5rem 1rem;
+  width: 300px;
+  color: #0c0909;
+  font-size: 20px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+select {
+  /* Add specific styles for the select element */
+}
+
+input::placeholder {
+  color: #170c0c4d;
+}
+
+.required-notification {
+  color: red;
+}
+/* Styles for buttons */
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #3498db;
+  color: #ffffff;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
+  border-color: #2980b9;
+}
+
+/* Styles for the task list */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Styles for individual tasks */
+li {
+  margin-bottom: 10px;
+  padding: 8px;
+  background-color: #ecf0f1;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Additional styles for links inside tasks, if needed */
+li a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+li a:hover {
+  text-decoration: underline;
+}
+
+.completed {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+/* Add more styles as needed for other elements */

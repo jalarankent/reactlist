@@ -1,0 +1,12 @@
+
+  
+
+  label .icon {
+    color: #333;
+  }
+  
+  
+  label.dark-mode .icon {
+    color: #fff;
+  }
+  

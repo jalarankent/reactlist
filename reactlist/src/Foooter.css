@@ -1,0 +1,18 @@
+/* Add this CSS to your existing stylesheet or create a new one */
+
+footer {
+    background-color: #043a53;
+    color: #191717;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer p {
+    margin: 5px 0;
+  }
+  
+
+  

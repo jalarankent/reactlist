@@ -1,23 +1,24 @@
+// App.js
 import React, { useState, useEffect } from 'react';
 import { signInWithPopup, signOut } from 'firebase/auth';
-
-import './App.css';
-
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import DarkMode from './DarkMode';
 import Login from './Login';
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import Footer from './Footer'; // Import the Footer component
+import './App.css';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDWA6H8dioAZMlZjmkrC0Vr7fuPDKqtu6c",
-  authDomain: "todofinal-45964.firebaseapp.com",
-  projectId: "todofinal-45964",
-  storageBucket: "todofinal-45964.appspot.com",
-  messagingSenderId: "891155513150",
-  appId: "1:891155513150:web:02ae4fd3095b167ca2b66f"
+  apiKey: "AIzaSyDiATTA5ko7PI2SySCFHplflgVsn-kO1vI",
+  authDomain: "awesome-project-88960.firebaseapp.com",
+  databaseURL: "https://awesome-project-88960-default-rtdb.firebaseio.com",
+  projectId: "awesome-project-88960",
+  storageBucket: "awesome-project-88960.appspot.com",
+  messagingSenderId: "13284418628",
+  appId: "1:13284418628:web:0f29b3798ef3d80e2f8811",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -27,7 +28,7 @@ const provider = new GoogleAuthProvider(db);
 
 library.add(faMoon, faSun);
 
-function App() {
+const App = () => {
   const [user, setUser] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
   const [tasks, setTasks] = useState([]);
@@ -36,6 +37,9 @@ function App() {
   const [selectedTask, setSelectedTask] = useState(null);
   const [category, setCategory] = useState('');
   const [priority, setPriority] = useState('');
+  const [sortCriteria, setSortCriteria] = useState('dueDate');
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [showRequiredNotification, setShowRequiredNotification] = useState(false);
 
   const priorities = ["Not Important", "Important", "Very Important"];
 
@@ -74,7 +78,23 @@ function App() {
       const updatedTasks = tasks.map((task) =>
         task.dueDate && task.dueDate < now ? { ...task, completed: true } : task
       );
+
+      // Sorting based on criteria and order
+      updatedTasks.sort((a, b) => {
+        if (sortCriteria === 'dueDate') {
+          if (!a.dueDate) return sortOrder === 'asc' ? 1 : -1;
+          if (!b.dueDate) return sortOrder === 'asc' ? -1 : 1;
+          return sortOrder === 'asc' ? a.dueDate - b.dueDate : b.dueDate - a.dueDate;
+        } else if (sortCriteria === 'priority') {
+          if (!a.priority) return sortOrder === 'asc' ? 1 : -1;
+          if (!b.priority) return sortOrder === 'asc' ? -1 : 1;
+          return sortOrder === 'asc' ? priorities.indexOf(a.priority) - priorities.indexOf(b.priority) : priorities.indexOf(b.priority) - priorities.indexOf(a.priority);
+        }
+        return 0;
+      });
+
       setTasks(updatedTasks);
+
       updatedTasks.forEach((task) => {
         if (task.completed && !task.notificationShown) {
           showNotification(`Task Completed: ${task.text}`);
@@ -92,7 +112,7 @@ function App() {
     }, 60000);
 
     return () => clearInterval(updateTasksInterval);
-  }, [tasks]);
+  }, [tasks, sortCriteria, sortOrder]);
 
   const showNotification = (message) => {
     if (window.Notification && Notification.permission === 'granted') {
@@ -152,6 +172,9 @@ function App() {
       setDueDate('');
       setCategory('');
       setPriority('');
+      setShowRequiredNotification(false); // Reset the notification state
+    } else {
+      setShowRequiredNotification(true); // Notify user about the required fields
     }
   };
 
@@ -253,16 +276,19 @@ function App() {
             placeholder="Add a new task"
             value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
+            required
           />
           <input
             type="date"
             placeholder="Due Date"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
+            required
           />
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            required
           >
             <option value="">Select Category</option>
             <option value="work">Work</option>
@@ -272,12 +298,16 @@ function App() {
           <select
             value={priority}
             onChange={(e) => setPriority(e.target.value)}
+            required
           >
             <option value="">Select Priority</option>
             {priorities.map((p) => (
               <option key={p} value={p}>{p}</option>
             ))}
           </select>
+          {showRequiredNotification && (
+            <p className="required-notification">Please fill in all required fields.</p>
+          )}
           {selectedTask ? (
             <button onClick={editTask}>Update Task</button>
           ) : (
@@ -325,6 +355,7 @@ function App() {
             </li>
           ))}
       </ul>
+      <Footer /> {/* Include the Footer component here */}
     </div>
   );
 }
